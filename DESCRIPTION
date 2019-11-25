@@ -2,11 +2,18 @@ Package: fec16
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Marium",
+           family = "Tapal",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+           email = "mariumtapal@gmail.com")
+     person(given = "Rana",
+           family = "Gahwagy",
+           role = c("aut", "cre"),
+           email = "rgahwagy@smith.edu")
+    person(given = "Irene",
+           family = "Ryan",
+           role = c("aut", "cre"),
+           email = "ryan.irene3@gmail.com")
 Description: What the package does (one paragraph).
 License: GPL-3
 Suggests: 
