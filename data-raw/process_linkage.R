@@ -1,11 +1,11 @@
-#ccl <- read.delim("ccl.txt", header = FALSE, sep = "|", quote="")
 library(tidyverse)
 library(stringr)
 library(lubridate)
 library(janitor)
 library(usethis)
 
-linkage <- read_csv("data-raw/linkage.csv") %>% select(-X1) %>%
+# process <- read.delim("data-raw/ccl.txt", header = FALSE, sep = "|", quote="") %>% write_csv(path = "data-raw/linkage.csv")
+linkage <- read_csv("data-raw/linkage.csv") %>%
   rename(cand_id = V1,
          cand_election_year = V2,
          fec_election_year = V3,
@@ -19,3 +19,4 @@ linkage <- read_csv("data-raw/linkage.csv") %>% select(-X1) %>%
          committee_designation = as.factor(committee_designation))
 
 usethis::use_data(linkage, overwrite = TRUE)
+
