@@ -1,4 +1,4 @@
-#' Candidate to Committee Linkage metadata
+#' Candidate to Committees Linkage metadata
 #'
 #' @description Provides linkage between the candidate and committee datasets.
 #'
