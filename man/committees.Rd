@@ -50,7 +50,7 @@ V = Cooperative
 
 W = Corporation without capital stock}
 \item{connected_org_name}{Organization connected to the committee}
-\item{cand_id}{A code assigned to a candidate by the FEC, which remains the same across election cycles if running for the same office; Included if committee has designation H, S, P}
+\item{cand_id}{A code assigned to a candidate by the FEC, which remains the same across election cycles if running for the same office; Included if committee type has designation H, S, P}
 }}
 \source{
 \url{https://classic.fec.gov/finance/disclosure/metadata/DataDictionaryCommitteeMaster.shtml}, downloaded 2019-12-04
