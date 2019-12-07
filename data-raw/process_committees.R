@@ -18,6 +18,11 @@ committees <- read_csv("~/fec16pkg/data-raw/committee.csv") %>%
        connected_org_name  = V14,
        cand_id  = V15)
 
-
+committees <- committees %>%
+  mutate(committee_designation = as.factor(committee_designation),
+         committee_type = as.factor(committee_type),
+         committee_party = as.factor(committee_party),
+         filing_frequency = as.factor(filing_frequency),
+         interest_group_category = as.factor(interest_group_category))
 
 usethis::use_data(committees, overwrite = TRUE)
