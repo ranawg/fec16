@@ -3,7 +3,7 @@
 \docType{data}
 \name{linkage}
 \alias{linkage}
-\title{Candidate to Committee Linkage metadata}
+\title{Candidate to Committees Linkage metadata}
 \format{A data frame with 6412 rows and 7 columns, providing information to link the candidate and committee datasets:
 \describe{
 \item{cand_id}{A code assigned to a candidate by the FEC, which remains the same across election cycles if running for the same office.}

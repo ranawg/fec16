@@ -18,4 +18,6 @@ committees <- read_csv("~/fec16pkg/data-raw/committee.csv") %>%
        connected_org_name  = V14,
        cand_id  = V15)
 
+
+
 usethis::use_data(committees, overwrite = TRUE)
