@@ -16,6 +16,6 @@ committees <- read_csv("~/fec16pkg/data-raw/committee.csv") %>%
        filing_frequency  = V12,
         interest_group_category = V13,
        connected_org_name  = V14,
-       candidate_id  = V15)
+       cand_id  = V15)
 
 usethis::use_data(committees, overwrite = TRUE)
