@@ -21,4 +21,4 @@
 #'   \item{cand_zip}{Mailing address: ZIP code}
 #'}
 #' @source <https://www.fec.gov/campaign-finance-data/candidate-master-file-description/>, downloaded 2019-12-04
-"candidates_master"
+"candidates"

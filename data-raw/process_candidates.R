@@ -7,7 +7,7 @@ library(usethis)
 #   write_csv(path = "data-raw/candidates.csv")
 
 #data tidying
-candidates_master <- read_csv("data-raw/candidates.csv") %>%
+candidates <- read_csv("data-raw/candidates.csv") %>%
   rename(cand_id          = V1,
          cand_name        = V2,
          cand_pty_aff     = V3,
