@@ -3,7 +3,7 @@
 \docType{data}
 \name{committees}
 \alias{committees}
-\title{Committee metadata}
+\title{Committees metadata}
 \format{A data frame with 17656 rows and 15 columns with information about FEC committees.
 \describe{
 \item{committee_id}{A 9-character alpha-numeric code assigned to a committee by the Federal Election Commission.}
@@ -14,11 +14,16 @@
 \item{city_or_town}{City or town of office}
 \item{state}{State of office}
 \item{zip_code}{Zip code of office}
-\item{committee_designation}{A = Authorized by a candidate,
-B = Lobbyist/Registrant PAC,
-D = Leadership PAC,
-J = Joint fundraiser,
-P = Principal campaign committee of a candidate,
+\item{committee_designation}{A = Authorized by a candidate
+
+B = Lobbyist/Registrant PAC
+
+D = Leadership PAC
+
+J = Joint fundraiser
+
+P = Principal campaign committee of a candidate
+
 U = Unauthorized}
 \item{committee_type}{FEC committee type, listed here: https://classic.fec.gov/finance/disclosure/metadata/CommitteeTypeCodes.shtml}
 \item{committee_party}{Party affiliation, listed here: https://classic.fec.gov/finance/disclosure/metadata/DataDictionaryPartyCodeDescriptions.shtml}
