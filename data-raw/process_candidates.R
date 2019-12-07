@@ -3,11 +3,11 @@ library(stringr)
 library(usethis)
 
 #reading files
-candidates <- read.delim("~/Downloads/cn.txt", header = FALSE, sep = "|", quote="")
-write.csv(candidates, file = "candidates.csv")
+# candidates <- read.delim("~/Downloads/cn.txt", header = FALSE, sep = "|", quote="") %>%
+#   write_csv(path = "data-raw/candidates.csv")
 
 #data tidying
-candidates <- select(-`X1`) %>%
+candidates_master <- read_csv("data-raw/candidates.csv") %>%
   rename(cand_id          = V1,
          cand_name        = V2,
          cand_pty_aff     = V3,
