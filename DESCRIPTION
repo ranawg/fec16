@@ -1,5 +1,5 @@
 Package: fec16
-Title: What the Package Does (One Line, Title Case)
+Title: Data Package for the 2016 General Election
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Marium",
@@ -14,12 +14,13 @@ Authors@R:
            family = "Ryan",
            role = c("aut", "cre"),
            email = "ryan.irene3@gmail.com")
-Description: What the package does (one paragraph).
+Description: This package loads data pertaining to the 2016 general election from the Federal Election Commission's website.
 License: GPL-3
 Suggests: 
     testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    dplyr
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
