@@ -41,10 +41,8 @@ committee_contributions <- read_csv("data-raw/committee_contributions.csv") %>%
   ) %>%
 
   select(-memo_code, -memo_text) %>%
-  filter(primary_general_indicator == "G2016")
-
-View(committee_contributions %>%
-       group_by(cand_id, state)%>%
-       summarise(number_of_contributions = n(), total_contributions = sum(transaction_amount)))
+  filter(primary_general_indicator == "G2016") %>%
+       group_by(cand_id)%>%
+       summarise(number_of_contributions = n(), total_contributions = sum(transaction_amount))
 
 usethis::use_data(committee_contributions, overwrite = TRUE)
