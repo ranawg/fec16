@@ -25,7 +25,7 @@ committees <- committees %>%
          filing_frequency = as.factor(filing_frequency),
          interest_group_category = as.factor(interest_group_category))
 
-committees%>%
-  filter(committee_type %in% c("H", "S", "P"))
+# committees%>%
+#   filter(committee_type %in% c("H", "S", "P"))
 
 usethis::use_data(committees, overwrite = TRUE)
