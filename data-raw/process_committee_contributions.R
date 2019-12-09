@@ -45,4 +45,5 @@ committee_contributions <- read_csv("data-raw/committee_contributions.csv") %>%
        group_by(cand_id)%>%
        summarise(number_of_contributions = n(), total_contributions = sum(transaction_amount))
 
+write_csv(committee_contributions, path = "data-raw/committee_contributions.csv")
 usethis::use_data(committee_contributions, overwrite = TRUE)
