@@ -14,11 +14,6 @@
 #'   \item{cand_ici}{Incumbent challenger status with designation: C = Challenger, I = Incumbent, O = Open Seat}
 #'   \item{cand_status}{Candidate status with designation:C = Statutory candidate, F = Statutory candidate for future election, N = Not yet a statutory candidate, P = Statutory candidate in prior cycle }
 #'   \item{cand_pcc}{ID of the candidate's principal campaign committee assigned by FEC.}
-#'   \item{cand_sti}{Mailing address: street}
-#'   \item{cand_st2}{Mailing address: street 2}
-#'   \item{cand_city}{Mailing address: city}
-#'   \item{cand_st}{Mailing address: state}
-#'   \item{cand_zip}{Mailing address: ZIP code}
 #'}
 #' @source <https://www.fec.gov/campaign-finance-data/candidate-master-file-description/>, downloaded 2019-12-04
 "candidates"

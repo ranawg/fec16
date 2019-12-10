@@ -1,8 +1,9 @@
 ---
-title: "fec_vignette"
+title: "fec16"
+author: "Irene Ryan, Marium Tapal, Rana Ghawagy"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{fec_vignette}
+  %\VignetteIndexEntry{fec16}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -17,3 +18,4 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(fec16)
 ```
+
