@@ -54,7 +54,7 @@ library(fec16)
 
 ### Data Wranging 
 `fec16` can be used to summarise data in order see how many candidates are running for elections (in all offices) for the two major parties:
-```{r example, warning = FALSE}
+```{r example, message = FALSE}
 library(fec16)
 library(tidyverse)
 
@@ -96,7 +96,7 @@ p
 
 
 Visualize the results of the elections and see how many poeple voted: 
-```{r}
+```{r, message = FALSE}
 library(ggplot2)
 library(dplyr)
 library(scales)
