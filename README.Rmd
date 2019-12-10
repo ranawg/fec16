@@ -53,7 +53,10 @@ library(fec16)
 ## Example
 
 `fec16` can be used to summarise data in order see how many candidates are running for elections (in all offices) for the two major parties:
-```{r example}
+```{r example, warning = FALSE}
+library(fec16)
+library(tidyverse)
+
 candidates %>% filter(cand_pty_aff == "REP"|cand_pty_aff =="DEM") %>% group_by(cand_pty_aff) %>% summarise(size = n())
 ```
 
