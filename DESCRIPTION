@@ -19,8 +19,7 @@ License: GPL-3
 Suggests: 
     testthat,
     knitr,
-    rmarkdown,
-    dplyr
+    rmarkdown
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
