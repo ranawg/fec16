@@ -9,8 +9,6 @@
 \item{committee_id}{A 9-character alpha-numeric code assigned to a committee by the Federal Election Commission.}
 \item{comittee_name}{Name of the committee}
 \item{treasurers_name}{The officially registered treasurer for the committee.}
-\item{street_one}{Address of offices}
-\item{street_two}{Additional address information}
 \item{city_or_town}{City or town of office}
 \item{state}{State of office}
 \item{zip_code}{Zip code of office}
@@ -27,17 +25,6 @@ P = Principal campaign committee of a candidate
 U = Unauthorized}
 \item{committee_type}{FEC committee type, listed here: https://classic.fec.gov/finance/disclosure/metadata/CommitteeTypeCodes.shtml}
 \item{committee_party}{Party affiliation, listed here: https://classic.fec.gov/finance/disclosure/metadata/DataDictionaryPartyCodeDescriptions.shtml}
-\item{filing_frequency}{A = Administratively terminated
-
-D = Debt
-
-M = Monthly filer
-
-Q = Quarterly filer
-
-T = Terminated
-
-W = Waived}
 \item{interest_group_category}{C = Corporation
 
 L = Labor organization
