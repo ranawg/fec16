@@ -1,3 +1,7 @@
+library(tidyverse)
+library(stringr)
+library(usethis)
+
 committees<-read.delim("~/Desktop/cm.txt", header = FALSE, sep = "|", quote="") %>%
   write_csv(path = "~/fec16pkg/data-raw/committee.csv")
 
@@ -23,9 +27,10 @@ committees <- committees %>%
          committee_type = as.factor(committee_type),
          committee_party = as.factor(committee_party),
          filing_frequency = as.factor(filing_frequency),
-         interest_group_category = as.factor(interest_group_category))
+         interest_group_category = as.factor(interest_group_category)) %>%
 
-# committees%>%
-#   filter(committee_type %in% c("H", "S", "P"))
+   filter(committee_type %in% c("H", "S", "P")) %>%
+
+  select(-street_one, -street_two, -filing_frequency)
 
 usethis::use_data(committees, overwrite = TRUE)

@@ -18,5 +18,6 @@ linkage <- read_csv("data-raw/linkage.csv") %>%
          committee_type = as.factor(committee_type),
          committee_designation = as.factor(committee_designation))
 
+write_csv(linkage, path = "data-raw/linkage.csv")
 usethis::use_data(linkage, overwrite = TRUE)
 

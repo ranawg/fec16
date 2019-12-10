@@ -20,23 +20,29 @@ knitr::opts_chunk$set(
 [![CRAN status](https://www.r-pkg.org/badges/version/fec16)](https://CRAN.R-project.org/package=fec16)
 <!-- badges: end -->
 
-The goal of fec16 is to ...
+
+`fec16` contains candidate, committee and candidate-committtee linkage data for the United States 2015-2016 election cycle. To get an understanding of what leads to a win, we have various **a selection of x contributions??** contribution data along with state data of the election winners. 
+
 
 ## Installation
 
-You can install the released version of fec16 from [CRAN](https://CRAN.R-project.org) with:
+`fec16` is hosted on GitHub and call be installed by running the following:
 
 ``` r
-install.packages("fec16")
+devtools::install_github("ranawg/fec16")
+```
+
+``` r
+library(fec16)
 ```
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
+We can summarise data to see how many candidates are running for elections (in all offices) for the two major parties:
 ```{r example}
 library(fec16)
-## basic example code
+library(tidyverse)
+candidates %>% filter(cand_pty_aff == "REP"|cand_pty_aff =="DEM") %>% group_by(cand_pty_aff) %>% summarise(size = n())
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
