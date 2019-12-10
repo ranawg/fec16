@@ -9,7 +9,8 @@ results <- read_csv("data-raw/results16.csv") %>%
   clean_names() %>%
   # delete unneccesary variables
   select(-state, -total_votes, -total_votes_number) %>%
-  rename( state = state_abbreviation) %>%
+  rename( state = state_abbreviation,
+          cand_id = fec_id ) %>%
   mutate(state                 = as.factor(state),
          winner_indicator      = as.factor(winner_indicator),
          general_election_date = as.Date(general_election_date),

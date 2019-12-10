@@ -103,9 +103,9 @@ library(scales)
 
 results_by_cand <- results %>% 
   drop_na(general_results, fec_id) %>%
- group_by(fec_id, last_name) %>%
+  group_by(can_id, last_name) %>%
   summarise(sum_votes = sum(general_results)) %>% 
-  filter( sum_votes >100000)
+  filter(sum_votes >100000)
   
   
  
