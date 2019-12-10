@@ -92,3 +92,24 @@ p
 ```
 
 
+Visualize the results of the elections and see how many poeple voted: 
+```{r}
+library(ggplot2)
+library(dplyr)
+library(scales)
+
+results_by_cand <- results %>% 
+  drop_na(general_results, fec_id) %>%
+ group_by(fec_id, last_name) %>%
+  summarise(sum_votes = sum(general_results)) %>% 
+  filter( sum_votes >100000)
+  
+  
+ 
+ggplot(results_by_cand, mapping = aes(x = last_name, y = sum_votes) ) + 
+  geom_col() + 
+  xlab("Candidates") + 
+  ylab("Number of Votes") +
+  scale_y_continuous(labels = comma)
+```
+
