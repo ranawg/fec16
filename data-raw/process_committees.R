@@ -31,6 +31,6 @@ committees <- committees %>%
 
    filter(committee_type %in% c("H", "S", "P")) %>%
 
-  select(-street_one, -street_two, -filing_frequency)
+  select(-street_one, -street_two, -filing_frequency, -interest_group_category)
 
 usethis::use_data(committees, overwrite = TRUE)
