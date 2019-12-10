@@ -52,6 +52,7 @@ library(fec16)
 
 ## Example
 
+### Data Wranging 
 `fec16` can be used to summarise data in order see how many candidates are running for elections (in all offices) for the two major parties:
 ```{r example, warning = FALSE}
 library(fec16)
@@ -60,12 +61,14 @@ library(tidyverse)
 candidates %>% filter(cand_pty_aff == "REP"|cand_pty_aff =="DEM") %>% group_by(cand_pty_aff) %>% summarise(size = n())
 ```
 
+### Joining Data 
 A data wrangling example that uses two of the data frames could be:
 ```{r}
 cand_cmte <- full_join(candidates, committees, by = "cand_id") %>% filter(cand_pty_aff == "REP"|cand_pty_aff =="DEM") %>% group_by(cand_pty_aff, committee_type) %>% summarise(n = n()) %>% drop_na(committee_type)
 cand_cmte
 ```
 
+### Data Visualization 
 And extending that to create a visualisation to see the results easily.
 ```{r}
 ggplot(cand_cmte, aes(x = committee_type, y = n, fill = cand_pty_aff)) + geom_col(position = "dodge") +
