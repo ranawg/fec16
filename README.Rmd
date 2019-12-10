@@ -38,12 +38,11 @@ library(fec16)
 
 ## Example
 
-You can use the datasets to connect candidates with committees:
-
-
+We can summarise data to see how many candidates are running for elections (in all offices) for the two major parties:
 ```{r example}
-
-
+library(fec16)
+library(tidyverse)
+candidates %>% filter(cand_pty_aff == "REP"|cand_pty_aff =="DEM") %>% group_by(cand_pty_aff) %>% summarise(size = n())
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
