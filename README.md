@@ -39,11 +39,19 @@ Example
 
 ### Data Wranging
 
+<<<<<<< HEAD
 `fec16` can be used to summarise data in order see how many candidates are running for elections (in all offices) for the two major parties:
+=======
+### Data Wranging
+
+`fec16` can be used to summarise data in order see how many candidates
+are running for elections (in all offices) for the two major parties:
+>>>>>>> 62e4ac1cce08451f867b8d6899189d5abd5b1d7f
 
 ``` r
 library(fec16)
 library(tidyverse)
+<<<<<<< HEAD
 #> ── Attaching packages ──────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──
 #> ✔ ggplot2 3.2.1     ✔ purrr   0.3.3
 #> ✔ tibble  2.1.3     ✔ dplyr   0.8.3
@@ -52,6 +60,8 @@ library(tidyverse)
 #> ── Conflicts ─────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 #> ✖ dplyr::filter() masks stats::filter()
 #> ✖ dplyr::lag()    masks stats::lag()
+=======
+>>>>>>> 62e4ac1cce08451f867b8d6899189d5abd5b1d7f
 
 candidates %>% filter(cand_pty_aff == "REP"|cand_pty_aff =="DEM") %>% group_by(cand_pty_aff) %>% summarise(size = n())
 #> # A tibble: 2 x 2
@@ -63,7 +73,12 @@ candidates %>% filter(cand_pty_aff == "REP"|cand_pty_aff =="DEM") %>% group_by(c
 
 ### Joining Data
 
+<<<<<<< HEAD
 A data wrangling example that uses two of the data frames could be:
+=======
+A data wrangling example that uses two of the data frames could
+be:
+>>>>>>> 62e4ac1cce08451f867b8d6899189d5abd5b1d7f
 
 ``` r
 cand_cmte <- full_join(candidates, committees, by = "cand_id") %>% filter(cand_pty_aff == "REP"|cand_pty_aff =="DEM") %>% group_by(cand_pty_aff, committee_type) %>% summarise(n = n()) %>% drop_na(committee_type)
@@ -84,7 +99,12 @@ cand_cmte
 
 ### Data Visualization
 
+<<<<<<< HEAD
 And extending that to create a visualisation to see the results easily.
+=======
+And extending that to create a visualisation to see the results
+easily.
+>>>>>>> 62e4ac1cce08451f867b8d6899189d5abd5b1d7f
 
 ``` r
 ggplot(cand_cmte, aes(x = committee_type, y = n, fill = cand_pty_aff)) + geom_col(position = "dodge") +
@@ -119,6 +139,7 @@ Visualize the results of the elections and see how many poeple voted:
 library(ggplot2)
 library(dplyr)
 library(scales)
+<<<<<<< HEAD
 #> 
 #> Attaching package: 'scales'
 #> The following object is masked from 'package:purrr':
@@ -127,6 +148,8 @@ library(scales)
 #> The following object is masked from 'package:readr':
 #> 
 #>     col_factor
+=======
+>>>>>>> 62e4ac1cce08451f867b8d6899189d5abd5b1d7f
 
 results_by_cand <- results %>% 
   drop_na(general_results, fec_id) %>%
