@@ -17,7 +17,8 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![CRAN status](https://www.r-pkg.org/badges/version/fec16)](https://CRAN.R-project.org/package=fec16)
+[![CRAN status](https://r-pkg.org/badges/version/fec16)](https://CRAN.R-project.org/package=fec16)
+[![Travis-CI Build Status](https://travis-ci.org/ranawg/fec16.svg?branch=master)](https://travis-ci.org/ranawg/fec16)
 <!-- badges: end -->
 
 
@@ -57,6 +58,7 @@ library(fec16)
 ```{r example, message = FALSE}
 library(fec16)
 library(tidyverse)
+library(scales)
 
 candidates %>% filter(cand_pty_aff == "REP"|cand_pty_aff =="DEM") %>% group_by(cand_pty_aff) %>% summarise(size = n())
 ```
@@ -97,22 +99,19 @@ p
 
 Visualize the results of the elections and see how many poeple voted: 
 ```{r, message = FALSE}
-library(ggplot2)
-library(dplyr)
-library(scales)
+ results_by_cand <- results %>% 
+   drop_na(general_results, cand_id) %>%
+   group_by(cand_id, last_name) %>%
+   summarise(sum_votes = sum(general_results)) %>% 
+   filter(sum_votes >100000)
+#   
+#   
+#  
+ ggplot(results_by_cand, mapping = aes(x = last_name, y = sum_votes) ) + 
+   geom_col() + 
+   xlab("Candidates") + 
+   ylab("Number of Votes") +
+   scale_y_continuous(labels = comma)
 
-results_by_cand <- results %>% 
-  drop_na(general_results, fec_id) %>%
- group_by(fec_id, last_name) %>%
-  summarise(sum_votes = sum(general_results)) %>% 
-  filter( sum_votes >100000)
-  
-  
- 
-ggplot(results_by_cand, mapping = aes(x = last_name, y = sum_votes) ) + 
-  geom_col() + 
-  xlab("Candidates") + 
-  ylab("Number of Votes") +
-  scale_y_continuous(labels = comma)
 ```
 

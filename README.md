@@ -8,7 +8,9 @@
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN
-status](https://www.r-pkg.org/badges/version/fec16)](https://CRAN.R-project.org/package=fec16)
+status](https://r-pkg.org/badges/version/fec16)](https://CRAN.R-project.org/package=fec16)
+[![Travis-CI Build
+Status](https://travis-ci.org/ranawg/fec16.svg?branch=master)](https://travis-ci.org/ranawg/fec16)
 <!-- badges: end -->
 
 `fec16` contains candidate, committee and candidate-committtee linkage
@@ -55,6 +57,7 @@ are running for elections (in all offices) for the two major parties:
 ``` r
 library(fec16)
 library(tidyverse)
+<<<<<<< HEAD
 #> Warning: package 'ggplot2' was built under R version 3.5.2
 #> Warning: package 'tibble' was built under R version 3.5.2
 #> Warning: package 'tidyr' was built under R version 3.5.2
@@ -62,6 +65,9 @@ library(tidyverse)
 #> Warning: package 'dplyr' was built under R version 3.5.2
 #> Warning: package 'stringr' was built under R version 3.5.2
 #> Warning: package 'forcats' was built under R version 3.5.2
+=======
+library(scales)
+>>>>>>> 837626ed5e9ecf01ad839153d71ee9ea0ea18cd3
 
 candidates %>% filter(cand_pty_aff == "REP"|cand_pty_aff =="DEM") %>% group_by(cand_pty_aff) %>% summarise(size = n())
 #> # A tibble: 2 x 2
@@ -129,23 +135,19 @@ p
 Visualize the results of the elections and see how many poeple voted:
 
 ``` r
-library(ggplot2)
-library(dplyr)
-library(scales)
-
-results_by_cand <- results %>% 
-  drop_na(general_results, fec_id) %>%
- group_by(fec_id, last_name) %>%
-  summarise(sum_votes = sum(general_results)) %>% 
-  filter( sum_votes >100000)
-  
-  
- 
-ggplot(results_by_cand, mapping = aes(x = last_name, y = sum_votes) ) + 
-  geom_col() + 
-  xlab("Candidates") + 
-  ylab("Number of Votes") +
-  scale_y_continuous(labels = comma)
+ results_by_cand <- results %>% 
+   drop_na(general_results, cand_id) %>%
+   group_by(cand_id, last_name) %>%
+   summarise(sum_votes = sum(general_results)) %>% 
+   filter(sum_votes >100000)
+#   
+#   
+#  
+ ggplot(results_by_cand, mapping = aes(x = last_name, y = sum_votes) ) + 
+   geom_col() + 
+   xlab("Candidates") + 
+   ylab("Number of Votes") +
+   scale_y_continuous(labels = comma)
 ```
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
