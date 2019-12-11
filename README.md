@@ -6,7 +6,23 @@ fec16
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental) [![CRAN status](https://www.r-pkg.org/badges/version/fec16)](https://CRAN.R-project.org/package=fec16) <!-- badges: end -->
 
+<<<<<<< HEAD
 `fec16` contains candidate, committee and candidate-committtee linkage data for the United States 2015-2016 election cycle. To get an understanding of what leads to a win, we have various **a selection of x contributions??** contribution data along with state data of the election winners.
+=======
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/fec16)](https://CRAN.R-project.org/package=fec16)
+[![Travis-CI Build
+Status](https://travis-ci.org/ranawg/fec16.svg?branch=master)](https://travis-ci.org/ranawg/fec16)
+<!-- badges: end -->
+
+`fec16` contains candidate, committee and candidate-committtee linkage
+data for the United States 2015-2016 election cycle. To get an
+understanding of what leads to a win, we have various **a selection of x
+contributions??** contribution data along with state data of the
+election winners.
+>>>>>>> 64d27cb8bb7eee7f9fae62e9d29ac8f8d0995f11
 
 Installation
 ------------
