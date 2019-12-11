@@ -55,6 +55,13 @@ are running for elections (in all offices) for the two major parties:
 ``` r
 library(fec16)
 library(tidyverse)
+#> Warning: package 'ggplot2' was built under R version 3.5.2
+#> Warning: package 'tibble' was built under R version 3.5.2
+#> Warning: package 'tidyr' was built under R version 3.5.2
+#> Warning: package 'purrr' was built under R version 3.5.2
+#> Warning: package 'dplyr' was built under R version 3.5.2
+#> Warning: package 'stringr' was built under R version 3.5.2
+#> Warning: package 'forcats' was built under R version 3.5.2
 
 candidates %>% filter(cand_pty_aff == "REP"|cand_pty_aff =="DEM") %>% group_by(cand_pty_aff) %>% summarise(size = n())
 #> # A tibble: 2 x 2
