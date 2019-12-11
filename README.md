@@ -8,7 +8,7 @@
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN
-status](https://www.r-pkg.org/badges/version/fec16)](https://CRAN.R-project.org/package=fec16)
+status](https://r-pkg.org/badges/version/fec16)](https://CRAN.R-project.org/package=fec16)
 [![Travis-CI Build
 Status](https://travis-ci.org/ranawg/fec16.svg?branch=master)](https://travis-ci.org/ranawg/fec16)
 <!-- badges: end -->
