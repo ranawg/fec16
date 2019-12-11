@@ -99,18 +99,19 @@ p
 
 Visualize the results of the elections and see how many poeple voted: 
 ```{r, message = FALSE}
-# results_by_cand <- results %>% 
-#   drop_na(general_results, cand_id) %>%
-#   group_by(cand_id, last_name) %>%
-#   summarise(sum_votes = sum(general_results)) %>% 
-#   filter(sum_votes >100000)
+ results_by_cand <- results %>% 
+   drop_na(general_results, cand_id) %>%
+   group_by(cand_id, last_name) %>%
+   summarise(sum_votes = sum(general_results)) %>% 
+   filter(sum_votes >100000)
 #   
 #   
 #  
-# ggplot(results_by_cand, mapping = aes(x = last_name, y = sum_votes) ) + 
-#   geom_col() + 
-#   xlab("Candidates") + 
-#   ylab("Number of Votes") +
-#   scale_y_continuous(labels = comma)
+ ggplot(results_by_cand, mapping = aes(x = last_name, y = sum_votes) ) + 
+   geom_col() + 
+   xlab("Candidates") + 
+   ylab("Number of Votes") +
+   scale_y_continuous(labels = comma)
+
 ```
 
