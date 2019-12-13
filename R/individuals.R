@@ -11,4 +11,5 @@
 #'   \item{transaction_amount}{Amount of transaction, in dollars}
 #'}
 #' @source <https://www.fec.gov/campaign-finance-data/contributions-individuals-file-description/>, downloaded 2019-12-09
+
 "individuals"
