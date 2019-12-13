@@ -14,7 +14,6 @@
 }}
 \source{
 \url{https://www.fec.gov/campaign-finance-data/contributions-individuals-file-description/}, downloaded 2019-12-09
-\code{\link[fec16:candidates]{fec16::candidates()}}
 }
 \usage{
 individuals
