@@ -6,9 +6,8 @@ individuals <- read.delim("~/Desktop/itcont_2016_20161130_92060702.txt", header 
 sample_n(5000)
 
 individuals <- individuals %>%
-  select(-c(V2, V3, V4, V5, V6, V8, V9, V12, V13, V16, V18, V17, V19, V20, V21)) %>%
+  select(-c(V2, V3, V4, V5, V7, V6, V8, V9, V12, V13, V16, V18, V17, V19, V20, V21)) %>%
   rename(committee_id = V1,
-        entity_type  = V7,
         state = V10,
         zipcode  = V11,
          transaction_date = V14,
