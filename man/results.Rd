@@ -6,7 +6,7 @@
 \title{Presidential General Election Results}
 \format{A data frame with 833 rows and 10 columns, providing information for results in each state :
 \describe{
-\item{fec_id}{A code assigned to a candidate by the FEC}
+\item{cand_id}{A code assigned to a candidate by the FEC}
 \item{state}{The state of the votes.}
 \item{general_election_date}{The election date.}
 \item{first_name}{First name of candidate}
