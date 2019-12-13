@@ -1,5 +1,5 @@
 #Checking dimensions of data frames
-
+library(testthat)
 #candidates
 
 test_that("number of columns in candidates df is correct", {
