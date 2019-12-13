@@ -4,6 +4,7 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -13,7 +14,8 @@ knitr::opts_chunk$set(
 )
 ```
 
-# fec16
+
+# fec16 <img src="Sticker/hex_fec16.png" align="right" height=140/>
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
@@ -22,7 +24,7 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 
-`fec16` contains candidate, committee and candidate-committtee linkage data for the United States 2015-2016 election cycle. To get an understanding of what leads to a win, we have various **a selection of x contributions??** contribution data along with state data of the election winners. 
+**fec16** contains candidate, committee and candidate-committtee linkage data for the United States 2015-2016 election cycle. Additionally, result and contribution data both from committees and individuals are included. 
 
 
 ## Installation
@@ -113,3 +115,7 @@ Visualize the results of the elections and see how many poeple voted:
 
 ```
 
+## Contributors
+ - [Irene Ryan](https://github.com/ireneryan)
+ - [Marium Tapal](https://github.com/mariumtapal)
+ - [Rana Gahwagy](https://github.com/ranawg)
