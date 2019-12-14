@@ -6,7 +6,7 @@
 \title{fec16: A Package That Contains FEC data for the U.S. 2015-2016 Election Cycle}
 \description{
 The fec16 package provides Federal Election Commission data of:
-candidates, committees, results, individual contributions, and committee contribution.
+candidates, committees, results, individual contributions, and committee contributions.
 }
 \section{Datasets}{
 
