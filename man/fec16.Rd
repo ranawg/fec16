@@ -8,8 +8,9 @@
 The fec16 package provides Federal Election Commission data of:
 candidates, committees, results, individual contributions, and committee contribution.
 }
-\section{fec16 Datasets}{
+\section{Datasets}{
 
+\if{html}{\figure{hex_fec16.png}{options: align = "right" width="45\%" alt="Figure: hex_fec16.png"}}
 \itemize{
 \item Candidates: \link{candidates}
 \item Committees: \link{committees}
