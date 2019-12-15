@@ -1,6 +1,7 @@
 ---
 title: "fec16"
 author: "Irene Ryan, Marium Tapal, Rana Ghawagy"
+date: "` r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{fec16}
@@ -18,4 +19,32 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(fec16)
 ```
+
+The `fec16` packages is a data set package that provides tamed dataframes of Federal elections of the 2015-2016 cycle and a documnet for each dataframe. 
+
+
+
+## Why tame data ? 
+We want to create a package that is easy to use for people just beginning to learn R such as introductory statistics and data science classes. If the data is being used for teaching, students and instructors do not need to worry about the unnecessary data wrangling and can immediately work on applying new knowledge and analysis without going back to the basics. Our package is inspired by both `nycflights13` by [Hadley](https://github.com/hadley/nycflights13) and `fivethirtyeight` by [Albert Kim](https://github.com/rudeboybert/fivethirtyeight).
+
+
+### Basics of tame data 
+
+We followed the [tame data principles](https://escholarship.org/uc/item/0rx1231m#article_main) in order to produce uniform dataframes that are easy to navigate and link. We used the following guidelines to tame our data:
+
+1. Variable names: 
+  a) Lower case and with underscores instead of spaces using `clean_names()`.
+  b) 20 characters or less. 
+  c) The same names were used for the same variables in different dataframes. 
+2. Variable types:
+  a) Encode varaible with dates with `as.Date`, unless it is only a year then it would be numeric
+  b) Encode categorical variables that a have a limited number of values with `as.factor` otherwise it would      be character
+3. Tidy data format or long instead of wide
+4. Missing data has value `NA`
+
+### Other edits
+-  We edropped varibles that are not useful for analysis from the original FEC datasets in order to minimize the size
+-
+
+
 
