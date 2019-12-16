@@ -33,34 +33,72 @@ We want to create a package that is easy to use for people just beginning to lea
 We followed the [tame data principles](https://escholarship.org/uc/item/0rx1231m#article_main) in order to produce uniform dataframes that are easy to navigate and link. We used the following guidelines to tame our data:
 
 1. Variable names: 
-  a) Lower case and with underscores instead of spaces using `clean_names()`.
-  b) 20 characters or less. 
-  c) The same names were used for the same variables in different dataframes. 
-  d) Names have a meaningful name. 
+   * Lower case and with underscores instead of spaces using `clean_names()`.
+   * 20 characters or less. 
+   * The same names were used for the same variables in different dataframes. 
+   * Names have a meaningful name. 
 2. Variable types:
-  a) Encode varaible with dates with `as.Date`, unless it is only a year then it would be numeric
-  b) Encode categorical variables that a have a limited number of values with `as.factor` otherwise it would      be character.
+   * Encode varaible with dates with `as.Date`, unless it is only a year then it would be numeric
+   * Encode categorical variables that a have a limited number of values with `as.factor` otherwise it would      be character.
 3. Tidy data format or long instead of wide.
 4. Missing data has value `NA`.
-5. Removed signs such as % and $ from numeric values 
+5. Removed signs such as % and $ attached to numeric values. 
 
 ### Other notes
 
 -  We edropped varibles that are not useful for analysis from the original FEC datasets. 
--  We Summerised large data sets with relavent data by the candidate. 
+-  We Summerised large data sets with relavent data in order to compress data. 
+
+## Dataframes included: 
+
+All the data sets are taken from [FEC](https://www.fec.gov/data/browse-data/?tab=bulk-data) 
+
+  `candidates`: all candidates registered with the FEC during the 2015-2016 election cycle
+
+  `committees`: all committees registered with the FEC during the 2015-2016 election cycle
+
+  `results`: the results of the 2016 general presidential election
+
+  `committee_contributions`: total contributions, aggregated by candidate, from committees
+
 
 ## Who should use this package? 
 
-Anyone interested in US politics and elections and want to think critically about the data and what can be inferred. We made this package with students and their instructors in mind to make working with the data itself as smooth as possible.This package would provide inspiration for question and projects that are data-driven and based on the real world. 
+Anyone interested in US politics and elections and want to think critically about the data and what can be inferred. We made this package with students and their instructors in mind to make working with the data itself as smooth as possible. This package would provide inspiration for question and projects that are data-driven and based on the real world. 
 
-Here are some examples for possible questions or projects to invistigate: 
--
--
--
+## Examples:
 
-### Examples: 
+Here is how to use this package to address the following questions: 
+  - What is the relationship between contributions of candidates and total votes they get? 
+  - 
+  - 
+  
+### What is the relationship between contributions of candidates and total votes they get? 
 
+Here we invistigate what kind of relationsip, if any, the candidates with over a 1000 votes got with the total contributations they made: 
 
+```{r, eval=FALSE}
+library(fec16)
+library(tidyverse)
+library(scales)
+library(dplyr)
 
+results_by_cand <- results %>% 
+  drop_na(general_results, cand_id) %>%
+  group_by(cand_id, last_name) %>%
+  summarise(sum_votes = sum(general_results)) %>% 
+  filter(sum_votes >1000) %>% 
+  inner_join(committee_contributions, by = "cand_id")
+
+  ggplot(results_by_cand, mapping = aes(x = total_contributions , y = sum_votes)) +
+  geom_point() +
+  scale_x_log10(labels = comma) +
+  scale_y_sqrt(labels = comma) +
+  geom_smooth(method="auto") + 
+  labs(title = "Contributions Vs. Votes in 2016", x = "Contributions in US Dollars", y = "Total Votes")
+
+```
+
+As we can see, the highest contributors got the highest amount of votes. 
 
 

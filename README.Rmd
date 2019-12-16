@@ -50,7 +50,6 @@ library(fec16)
 
 `committee_contributions`: total contributions, aggregated by candidate, from committees
 
-`linkage`: provides linkage ID's for candidates and committees
 
 
 ## Example
