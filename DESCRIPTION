@@ -16,6 +16,7 @@ Authors@R:
            email = "ryan.irene3@gmail.com")
 Description: This package loads data pertaining to the 2016 general election from the Federal Election Commission's website.
 License: GPL-3
+Depends: R (>= 2.10)
 Suggests: 
     testthat (>= 2.1.0),
     knitr,
