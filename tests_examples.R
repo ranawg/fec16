@@ -35,7 +35,10 @@ context("Dimensions of data")
  })
 #
 # #individuals
-# testthat nrow(individuals) = 5000
+
+test_that("number of rows in individuals df is correct", {
+   expect_equal(nrow(individuals) , 5000)
+ })
 #
 #
 # #Tests from Vignettes
