@@ -23,9 +23,9 @@ candidates, committees, results, individual contributions, and committee contrib
 \section{Authors}{
 
 \itemize{
-\item Irene Ryan: \link{https://github.com/ireneryan}
-\item Marium Tapal: \link{https://github.com/mariumtapal}
-\item Rana Gahwagy: \link{https://github.com/ranawg}
+\item Irene Ryan: \url{https://github.com/ireneryan}
+\item Marium Tapal: \url{https://github.com/mariumtapal}
+\item Rana Gahwagy: \url{https://github.com/ranawg}
 }
 }
 

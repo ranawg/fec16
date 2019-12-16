@@ -15,9 +15,9 @@
 #'
 #' @section Authors:
 #' \itemize{
-#'   \item Irene Ryan: [https://github.com/ireneryan]
-#'   \item Marium Tapal: [https://github.com/mariumtapal]
-#'   \item Rana Gahwagy: [https://github.com/ranawg]
+#'   \item Irene Ryan: \url{https://github.com/ireneryan}
+#'   \item Marium Tapal: \url{https://github.com/mariumtapal}
+#'   \item Rana Gahwagy: \url{https://github.com/ranawg}
 #' }
 #'
 #' @docType package

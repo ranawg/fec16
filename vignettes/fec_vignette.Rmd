@@ -1,7 +1,7 @@
 ---
 title: "fec16"
-author: "Irene Ryan, Marium Tapal, Rana Ghawagy"
-date: "` r Sys.Date()`"
+author: "Irene Ryan, Marium Tapal, and Rana Gahwagy"
+date: December 19, 2019
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{fec16}
@@ -9,20 +9,12 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
-
-```{r setup}
+```{r message=FALSE, warning=FALSE}
 library(fec16)
+library(tidyverse)
 ```
 
-The `fec16` packages is a data set package that provides tamed dataframes of Federal elections of the 2015-2016 cycle and a documnet for each dataframe. 
-
-
+The `fec16` packages is a data package that provides tamed dataframes of the Federal Election Data of the 2015-2016 cycle and a document for each dataframe. 
 
 ## Why tame data ? 
 We want to create a package that is easy to use for people just beginning to learn R such as introductory statistics and data science classes. If the data is being used for teaching, students and instructors do not need to worry about the unnecessary data wrangling and can immediately work on applying new knowledge and analysis without going back to the basics. Our package is inspired by both `nycflights13` by [Hadley](https://github.com/hadley/nycflights13) and `fivethirtyeight` by [Albert Kim](https://github.com/rudeboybert/fivethirtyeight).
@@ -43,8 +35,51 @@ We followed the [tame data principles](https://escholarship.org/uc/item/0rx1231m
 4. Missing data has value `NA`
 
 ### Other edits
--  We edropped varibles that are not useful for analysis from the original FEC datasets in order to minimize the size
+-  We dropped varibles that are not useful for analysis from the original FEC datasets in order to minimize the size
 -
 
+## What does the data look like?
 
+The first six rows of the `results` dataset look like:
+```{r}
+head(results)
+```
+
+
+## What can we do with this data?
+
+### Some Data Wrangling
+
+#### Example 1:
+
+We can join any of the datasets using `cand_id`. Each dataset with the exception of the `individuals` dataset contains a possible joining key: `cand_id`.
+
+Here is an example of calculating how many candidates are in each of the two major parties: Democratic (DEM) and Republican (REP), based on their committee type:
+```{r message=FALSE, warning=FALSE}
+cand_cmte <- full_join(candidates, committees, by = "cand_id") %>% filter(cand_pty_aff == "REP"|cand_pty_aff =="DEM") %>% group_by(cand_pty_aff, committee_type) %>% summarise(n = n()) %>% drop_na(committee_type)
+head(cand_cmte)
+```
+
+#### Example 2:
+
+Using the `results` dataset, we can also see what actually happened in the 2016 elections.
+
+Here is how we can summarize the number of wins by candidate:
+```{r}
+wins <- results %>% filter(winner_indicator == "W") %>% group_by(last_name) %>% summarise(num_wins = n())
+wins
+```
+
+
+### Some Data Visualization
+
+#### Example 3:
+From the example above, we can show the results using a simple bar chart:
+
+Each win is for a single state. There are 51 total wins for the 50 States and Washington, D.C.
+```{r}
+ggplot(wins, aes(x = last_name, y = num_wins, fill = last_name)) + geom_col() +
+  scale_fill_manual(values=c("blue", "red")) + labs(title = "Number of States Won: Clinton vs Trump",
+                                                    x = "Candidate", y = "Count", fill = "Candidate")
+```
 
