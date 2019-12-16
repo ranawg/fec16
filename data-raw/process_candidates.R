@@ -8,7 +8,6 @@ library(usethis)
 
 #data tidying
 candidates <- read_csv("data-raw/candidates.csv") %>%
-  select(-cand_sti, -cand_st2, -cand_city, -cand_st, -cand_zip) %>%
   rename(cand_id          = V1,
          cand_name        = V2,
          cand_pty_aff     = V3,

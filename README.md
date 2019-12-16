@@ -4,7 +4,7 @@ fec16 <img src="Sticker/hex_fec16.png" align="right" height=140/>
 =================================================================
 
 <!-- badges: start -->
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://tidyverse.org/lifecycle/#experimental) [![CRAN status](https://r-pkg.org/badges/version/fec16)](https://CRAN.R-project.org/package=fec16) [![Travis-CI Build Status](https://travis-ci.org/ranawg/fec16.svg?branch=master)](https://travis-ci.org/ranawg/fec16) <!-- badges: end -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental) [![CRAN status](https://r-pkg.org/badges/version/fec16)](https://CRAN.R-project.org/package=fec16) [![Travis-CI Build Status](https://travis-ci.org/ranawg/fec16.svg?branch=master)](https://travis-ci.org/ranawg/fec16) <!-- badges: end -->
 
 **fec16** contains candidate, committee and candidate-committtee linkage data for the United States 2015-2016 election cycle. Additionally, result and contribution data both from committees and individuals are included.
 
@@ -31,8 +31,6 @@ Data
 `results`: the results of the 2016 general presidential election
 
 `committee_contributions`: total contributions, aggregated by candidate, from committees
-
-`linkage`: provides linkage ID's for candidates and committees
 
 Example
 -------
