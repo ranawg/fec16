@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 ```
 
 
-# fec16 <img src="Sticker/hex_fec16.png" align="right" height=140/>
+# fec16 <img src="data-raw/Sticker/hex_fec16.png" align="right" height=140/>
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
@@ -49,6 +49,8 @@ library(fec16)
 `results`: the results of the 2016 general presidential election
 
 `committee_contributions`: total contributions, aggregated by candidate, from committees
+
+`individuals`: a sample of 5000 individual contributions to candidates/committees during the primary and general 2016 elections
 
 
 
