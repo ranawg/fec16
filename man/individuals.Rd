@@ -9,7 +9,7 @@
 \item{committee_id}{A unique code assigned to a committee by the FEC}
 \item{state}{Individual's state}
 \item{zipcode}{Individuals's zipcode}
-\item{transcation_date}{Date of transaction}
+\item{transaction_date}{Date of transaction}
 \item{transaction_amount}{Amount of transaction, in dollars}
 }}
 \source{
