@@ -19,9 +19,9 @@ context("Dimensions of data")
 # #results
  test_that("Number of unique candidate IDs is 92", {
    results2 <- results %>%
-     group_by(cand_id)%>%
-     summarise( n = n())
-   expect_equal(results2$n, 92)
+     dplyr::group_by(cand_id)%>%
+     dplyr::summarise( n = dplyr::n())
+   expect_equal(nrow(results2), 92)
  })
 #
 #
