@@ -15,8 +15,8 @@ individuals <- individuals %>%
           )
 
 individuals <- individuals %>%
-  mutate(entity_type = as.factor(entity_type))
-
+  mutate(state = as.factor(state),
+         transaction_date = as.Date(as.character(transaction_date), "%m%d%Y"))
 
 
 
