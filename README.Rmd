@@ -69,14 +69,14 @@ candidates %>% filter(cand_pty_aff == "REP"|cand_pty_aff =="DEM") %>% group_by(c
 We can join any of the datasets using `cand_id`. Each dataset with the exception of the `individuals` dataset contains a possible joining key: `cand_id`.
 
 Here is an example of calculating how many candidates are in each of the two major parties: Democratic (DEM) and Republican (REP), based on their committee type:
-```{r}
+```{r message=FALSE, warning=FALSE}
 cand_cmte <- full_join(candidates, committees, by = "cand_id") %>% filter(cand_pty_aff == "REP"|cand_pty_aff =="DEM") %>% group_by(cand_pty_aff, committee_type) %>% summarise(n = n()) %>% drop_na(committee_type)
 head(cand_cmte)
 ```
 
 ### Data Visualization 
 And extending that to create a visualization to see the results easily.
-```{r}
+```{r message=FALSE, warning=FALSE}
 ggplot(cand_cmte, aes(x = committee_type, y = n, fill = cand_pty_aff)) + geom_col(position = "dodge") +
   labs(title = "Bar Chart of Total Committees by Type and Party", x = "Committee Type", y = "Count", fill = "Candidate Party Affiliation")
 ```

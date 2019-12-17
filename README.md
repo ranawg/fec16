@@ -81,8 +81,6 @@ type:
 
 ``` r
 cand_cmte <- full_join(candidates, committees, by = "cand_id") %>% filter(cand_pty_aff == "REP"|cand_pty_aff =="DEM") %>% group_by(cand_pty_aff, committee_type) %>% summarise(n = n()) %>% drop_na(committee_type)
-#> Warning: Factor `committee_type` contains implicit NA, consider using
-#> `forcats::fct_explicit_na`
 head(cand_cmte)
 #> # A tibble: 6 x 3
 #> # Groups:   cand_pty_aff [109]
