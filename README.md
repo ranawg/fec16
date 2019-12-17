@@ -13,7 +13,7 @@ status](https://r-pkg.org/badges/version/fec16)](https://CRAN.R-project.org/pack
 Status](https://travis-ci.org/ranawg/fec16.svg?branch=master)](https://travis-ci.org/ranawg/fec16)
 <!-- badges: end -->
 
-**fec16** contains candidate, committee and candidate-committtee linkage
+**fec16** contains candidate, committee and candidate-committee linkage
 data for the United States 2015-2016 election cycle. Additionally,
 result and contribution data both from committees and individuals are
 included.
@@ -51,7 +51,7 @@ from committees
 
 ### Data Wrangling
 
-`fec16` can be used to summarise data in order see how many candidates
+`fec16` can be used to summarize data in order see how many candidates
 are running for elections (in all offices) for the two major parties:
 
 ``` r
@@ -97,7 +97,7 @@ head(cand_cmte)
 
 ### Data Visualization
 
-And extending that to create a visualisation to see the results
+And extending that to create a visualization to see the results
 easily.
 
 ``` r
