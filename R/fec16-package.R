@@ -22,4 +22,4 @@
 #'
 #' @docType package
 #' @name fec16
-"fec16"
+NULL
