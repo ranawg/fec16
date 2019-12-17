@@ -1,5 +1,5 @@
 Package: fec16
-Title: Data Package for the 2016 General Election
+Title: Data Package for the 2016 Election
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Marium",

@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 
-**fec16** contains candidate, committee and candidate-committee linkage data for the United States 2015-2016 election cycle. Additionally, result and contribution data both from committees and individuals are included. 
+**fec16** contains relational data from the Federal Election Commission website pertaining to candidates and committees for the United States 2015-2016 election cycle. Additionally, result of the 2016 general election and contribution data both from committees and individuals are included. 
 
 
 ## Installation

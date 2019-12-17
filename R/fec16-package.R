@@ -1,4 +1,4 @@
-#' fec16: A Package That Contains FEC data for the U.S. 2015-2016 Election Cycle
+#' fec16: A Data Package for the 2016 Election
 #'
 #' The fec16 package provides Federal Election Commission data of:
 #' candidates, committees, results, individual contributions, and committee contributions.
@@ -22,4 +22,4 @@
 #'
 #' @docType package
 #' @name fec16
-NULL
+"fec16"
