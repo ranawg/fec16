@@ -1,7 +1,6 @@
 ---
 title: "fec16"
-author: "Irene Ryan, Marium Tapal, Rana Ghawagy"
-date: "` r Sys.Date()`"
+author: "Irene Ryan, Marium Tapal, and Rana Gahwagy"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{fec16}
@@ -9,100 +8,182 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
+```{r message=FALSE, warning=FALSE, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
-)
-```
-
-```{r setup}
-library(fec16)
-```
-
-The `fec16` packages is a data set package that provides tamed dataframes of Federal elections of the 2015-2016 cycle and a documnet for each dataframe. 
-
-
-
-## Why tame data ? 
-We want to create a package that is easy to use for people just beginning to learn R such as introductory statistics and data science classes. If the data is being used for teaching, students and instructors do not need to worry about the unnecessary data wrangling and can immediately work on applying new knowledge and analysis without going back to the basics. Our package is inspired by both `nycflights13` by [Hadley](https://github.com/hadley/nycflights13) and `fivethirtyeight` by [Albert Kim](https://github.com/rudeboybert/fivethirtyeight).
-
-
-### Basics of tame data 
-
-We followed the [tame data principles](https://escholarship.org/uc/item/0rx1231m#article_main) in order to produce uniform dataframes that are easy to navigate and link. We used the following guidelines to tame our data:
-
-1. Variable names: 
-   * Lower case and with underscores instead of spaces using `clean_names()`.
-   * 20 characters or less. 
-   * The same names were used for the same variables in different dataframes. 
-   * Names have a meaningful name. 
-2. Variable types:
-   * Encode varaible with dates with `as.Date`, unless it is only a year then it would be numeric
-   * Encode categorical variables that a have a limited number of values with `as.factor` otherwise it would      be character.
-3. Tidy data format or long instead of wide.
-4. Missing data has value `NA`.
-5. Removed signs such as % and $ attached to numeric values. 
-
-### Other notes
-
--  We edropped varibles that are not useful for analysis from the original FEC datasets. 
--  We Summerised large data sets with relavent data in order to compress data. 
-
-## Dataframes included: 
-
-All the data sets are taken from [FEC](https://www.fec.gov/data/browse-data/?tab=bulk-data) 
-
-  `candidates`: all candidates registered with the FEC during the 2015-2016 election cycle
-
-  `committees`: all committees registered with the FEC during the 2015-2016 election cycle
-
-  `results`: the results of the 2016 general presidential election
-
-  `committee_contributions`: total contributions, aggregated by candidate, from committees
-
-
-## Who should use this package? 
-
-Anyone interested in US politics and elections and want to think critically about the data and what can be inferred. We made this package with students and their instructors in mind to make working with the data itself as smooth as possible. This package would provide inspiration for question and projects that are data-driven and based on the real world. 
-
-## Examples:
-
-Here is how to use this package to address the following questions: 
-  - What is the relationship between contributions of candidates and total votes they get? 
-  - 
-  - 
-  
-### What is the relationship between contributions of candidates and total votes they get? 
-
-Here we invistigate what kind of relationsip, if any, the candidates with over a 1000 votes got with the total contributations they made. We are interested in candidates with an ID number so we can join them with the contribution data set by using `inner_join`.
-
-```{r, eval=TRUE}
+  comment = "#>",
+  fig.width=6, fig.height=4.5
+  ) 
 library(fec16)
 library(scales)
 library(dplyr)
 library(tidyr)
+library(ggplot2)
+library(ggrepel)
+```
 
+The `fec16` package provides tamed datasets of the Federal Election Commission (FEC)'s 2015-2016 election cycle. 
+
+## Inspiration 
+We wanted to create a data package that is easy to use for people just beginning to learn R, for example, in introductory statistics and data science classes. For this purpose, this package is nice because students and instructors do not need to worry about the unnecessary data wrangling and can immediately use the data for analysis. 
+
+Our package is inspired by [Hadley Wickham's](https://github.com/hadley/nycflights13) `nycflights13` package. We used the data taming principles from [Albert Kim's](https://github.com/rudeboybert/fivethirtyeight) `fivethirtyeight` package, which are explained in detail [here](https://escholarship.org/uc/item/0rx1231m).
+
+
+### Basics of tame data 
+
+We used the tame data principles to produce uniform data frames that are easy to navigate and link together. The following are the guidelines we used to tame our data:
+
+1. Variable names: 
+   * Lower case and with underscores instead of spaces using `clean_names()`
+   * 20 characters or less
+   * The same names were used for the same variables in different data frames 
+   * Names to be meaningful 
+2. Variable types:
+   * Encode variable with dates with `as.Date`, unless it is only a year then it would be numeric type
+   * Encode categorical variables that a have a limited number of values with `as.factor` otherwise it would be of character type
+3. Tidy or long data format instead of wide 
+4. Missing data has value `NA`
+5. Removed signs such as % and $ attached to numeric values
+
+## Other notes
+
+-  We dropped variables that are not useful for analysis from the original FEC datasets 
+-  We summarized large datasets with relevant data in order to compress its size
+
+## Data frames included: 
+
+All the datasets are taken from [FEC](https://www.fec.gov/data/browse-data/?tab=bulk-data) 
+
+`candidates`: all candidates registered with the FEC during the 2015-2016 election cycle
+
+`committees`: all committees registered with the FEC during the 2015-2016 election cycle
+
+`results`: the results of the 2016 general presidential election
+
+`individuals`: a sample of 5000 individual contributions to candidates/committees during the primary and general 2016 elections
+
+`committee_contributions`: total contributions, aggregated by candidate, from committees
+
+## Who should use this package? 
+
+Mainly, anyone interested in US politics and elections and wants to use actual data to think critically and make inferences about it should use this package. Additionally, since we made this package with students and their instructors in mind to make working with the data itself as smooth as possible, it is a good set of data for teaching. Moreover, this package can provide inspiration for questions and projects that are data-driven and based on the real world. 
+
+## What does the data look like?
+
+The first six rows of the `results` dataset look like:
+```{r}
+head(results)
+```
+
+## What can we do with this data?
+
+We can use this package to address the (non-exhaustive) list of questions: 
+
+  1. Which presidential candidate won majority in more states?
+  2. What is the relationship between contributions of candidates and total votes they get? 
+  3. Which candidate got the most popular vote and how many?
+  4. Is there a trend in the contributions to a candidate depending on their party?
+
+To answer our questions we can make use of some **data wrangling** and **data visualization** techniques. Some examples (addressing the questions above) are shown below:
+
+### Example 1:
+
+**Which presidential candidate won majority in more states?**
+
+Using the `results` dataset, we can also see what actually happened in the 2016 elections.
+
+Here is how we can summarize the number of wins by candidate:
+```{r}
+wins <- results %>% filter(winner_indicator == "W") %>% group_by(last_name) %>% summarise(num_wins = n())
+wins
+```
+
+We can show the results using a simple bar chart:
+
+Each win is for a single state. There are 51 total wins for the 50 States and Washington, D.C.
+```{r}
+ggplot(wins, aes(x = last_name, y = num_wins, fill = last_name)) + geom_col() +
+scale_fill_manual(values=c("blue", "red")) + labs(title = "Number of States Won: Clinton vs. Trump",
+x = "Candidate", y = "Count", fill = "Candidate")
+```
+
+We can see that Trump had majority in more states than Clinton.
+
+### Example 2:
+
+**What is the relationship between contributions of candidates and total votes they get?**
+
+Here we investigate what kind of relationship, if any, the candidates with over a 1000 votes got with the total contributions they made. We are interested in candidates with an ID number so we can join them with the contribution data set by using `inner_join`.
+
+```{r, eval=TRUE}
 results_by_cand <- results %>% 
   drop_na(general_results, cand_id) %>%
   group_by(cand_id, last_name) %>%
   summarise(sum_votes = sum(general_results)) %>% 
   filter(sum_votes >1000) %>% 
   inner_join(committee_contributions, by = "cand_id")
+results_by_cand
 ```
 
-Next, we plot the contributions and votes on a scatter plot and plot a trendline that would make it easy for us to see the relationship. Since there are outliers in the data, it is best to not use a continouse axis scale in order to see all of the points, with same point labeled. 
+Next, we plot the contributions and votes on a scatter plot and plot a trend line that would make it easy for us to see the relationship. Since there are outliers in the data, it is best to not use a continuous axis scale in order to see all of the points. 
 
-```{r, eval=TRUE}
+```{r eval=TRUE, message=FALSE}
   ggplot(results_by_cand, mapping = aes(x = total_contributions , y = sum_votes)) +
   geom_point() +
   scale_x_log10(labels = comma) +
   scale_y_sqrt(labels = comma) +
   geom_smooth(method="auto") + 
-  labs(title = "Contributions Vs. Votes in 2016", x = "Contributions in US Dollars", y = "Total Votes") +
-  geom_text(aes(label= last_name), check_overlap = TRUE)
+  labs(title = "Contributions vs. Votes in 2016", x = "Contributions in US Dollars", y = "Total Votes") + geom_text_repel(aes(label= last_name))
 ```
 
-As we can see, the highest contributors got the highest amount of votes so it has a positve correlation. 
+As we can see, the highest contributors got the highest amount of votes so it has a positive correlation. 
+
+
+### Example 3:
+
+**Which candidate got the most popular vote and how many?**
+
+Visualize the results of the popular vote in the elections and see how many people voted: 
+```{r message=FALSE, warning=FALSE}
+results_by_cand <- results %>% 
+  drop_na(general_results, cand_id) %>%
+  group_by(cand_id, last_name) %>%
+  summarise(sum_votes = sum(general_results)) %>% 
+  filter(sum_votes >100000)
+
+ggplot(results_by_cand, mapping = aes(x = last_name, y = sum_votes, fill = last_name) ) + 
+  geom_col() + 
+  xlab("Candidates") + 
+  ylab("Number of Votes") + labs(title = "How Many People Voted?", fill = "Candidate") + 
+  scale_y_continuous(labels = comma)
+```
+
+We can see that Clinton got more popular votes than Trump! It looks like Clinton has about 65 million votes.
+
+
+### Example 4:
+
+**Is there a trend in the contributions to a candidate depending on their party?**
+
+We can create a scatter-plot of total contributions per candidate, colored by party (only including Democratic and Republican parties).
+```{r message = FALSE}
+joined_data <- candidates%>%
+  full_join(committee_contributions, by = "cand_id") %>%
+  filter(!is.na(total_contributions)) %>%
+  filter(cand_pty_aff=="REP" | cand_pty_aff == "DEM") %>%
+  filter(total_contributions <= 1e+07)
+
+ggplot(joined_data, aes(x=cand_id, y=total_contributions, color = cand_pty_aff)) +
+  geom_point() +
+  geom_jitter() + 
+  theme(axis.text.x=element_blank()) + 
+  labs(title = "Contributions per Candidate by Party", 
+       x = "Candidates", y = "Total Contributions ($)",
+       color = "Candidate Party Affiliation") + 
+  scale_y_continuous(labels = comma)
+```
+
+It doesn't look like there are any specific patterns in the contributions (for contributions under $ 10 million).
 
 

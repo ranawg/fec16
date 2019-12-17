@@ -41,15 +41,15 @@ library(fec16)
 
 `results`: the results of the 2016 general presidential election
 
-`committee_contributions`: total contributions, aggregated by candidate,
-from committees
-
 `individuals`: a sample of 5000 individual contributions to
 candidates/committees during the primary and general 2016 elections
 
-## Example
+`committee_contributions`: total contributions, aggregated by candidate,
+from committees
 
-### Data Wranging
+## Examples
+
+### Data Wrangling
 
 `fec16` can be used to summarise data in order see how many candidates
 are running for elections (in all offices) for the two major parties:
@@ -67,16 +67,22 @@ candidates %>% filter(cand_pty_aff == "REP"|cand_pty_aff =="DEM") %>% group_by(c
 #> 2 REP           2678
 ```
 
-### Joining Data
+#### Joining Data
 
-A data wrangling example that uses two of the data frames could
-be:
+We can join any of the datasets using `cand_id`. Each dataset with the
+exception of the `individuals` dataset contains a possible joining key:
+`cand_id`.
+
+Here is an example of calculating how many candidates are in each of the
+two major parties: Democratic (DEM) and Republican (REP), based on their
+committee
+type:
 
 ``` r
 cand_cmte <- full_join(candidates, committees, by = "cand_id") %>% filter(cand_pty_aff == "REP"|cand_pty_aff =="DEM") %>% group_by(cand_pty_aff, committee_type) %>% summarise(n = n()) %>% drop_na(committee_type)
 #> Warning: Factor `committee_type` contains implicit NA, consider using
 #> `forcats::fct_explicit_na`
-cand_cmte
+head(cand_cmte)
 #> # A tibble: 6 x 3
 #> # Groups:   cand_pty_aff [109]
 #>   cand_pty_aff committee_type     n
@@ -100,45 +106,6 @@ ggplot(cand_cmte, aes(x = committee_type, y = n, fill = cand_pty_aff)) + geom_co
 ```
 
 <img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
-
-Create a scatter-plot of total contributions per candidate, colored by
-party (only including Democrat and Republican)
-
-``` r
-
-joined_data <- candidates%>%
-  full_join(committee_contributions, by = "cand_id") %>%
-  filter(!is.na(total_contributions)) %>%
-  filter(cand_pty_aff=="REP" | cand_pty_aff == "DEM") %>%
-  filter(total_contributions <= 1e+08)
-  
-  p <- ggplot(joined_data, aes(x=cand_id, y=total_contributions, color = cand_pty_aff)) +
-  geom_point() +
-  geom_jitter() +
-  theme(axis.text.x=element_blank())
-  
-p
-```
-
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
-
-Visualize the results of the elections and see how many poeple voted:
-
-``` r
- results_by_cand <- results %>% 
-   drop_na(general_results, cand_id) %>%
-   group_by(cand_id, last_name) %>%
-   summarise(sum_votes = sum(general_results)) %>% 
-   filter(sum_votes >100000)
-  
- ggplot(results_by_cand, mapping = aes(x = last_name, y = sum_votes) ) + 
-   geom_col() + 
-   xlab("Candidates") + 
-   ylab("Number of Votes") +
-   scale_y_continuous(labels = comma)
-```
-
-<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
 
 ## Contributors
 
