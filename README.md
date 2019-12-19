@@ -34,19 +34,15 @@ library(fec16)
 
 ## Data
 
-`candidates`: all candidates registered with the FEC during the
-2015-2016 election cycle
-
-`committees`: all committees registered with the FEC during the
-2015-2016 election cycle
-
-`results`: the results of the 2016 general presidential election
-
-`individuals`: a sample of 5000 individual contributions to
-candidates/committees during the primary and general 2016 elections
-
-`committee_contributions`: total contributions, aggregated by candidate,
-from committees
+  - `candidates`: all candidates registered with the FEC during the
+    2015-2016 election cycle
+  - `committees`: all committees registered with the FEC during the
+    2015-2016 election cycle
+  - `results`: the results of the 2016 general presidential election
+  - `individuals`: a sample of 5000 individual contributions to
+    candidates/committees during the primary and general 2016 elections
+  - `committee_contributions`: total contributions, aggregated by
+    candidate, from committees
 
 ## Examples
 
@@ -58,9 +54,11 @@ are running for elections (in all offices) for the two major parties:
 ``` r
 library(fec16)
 library(tidyverse)
-library(scales)
 
-candidates %>% filter(cand_pty_aff == "REP"|cand_pty_aff =="DEM") %>% group_by(cand_pty_aff) %>% summarise(size = n())
+candidates %>%
+  filter(cand_pty_aff == "REP" | cand_pty_aff == "DEM") %>%
+  group_by(cand_pty_aff) %>%
+  summarise(size = n())
 #> # A tibble: 2 x 2
 #>   cand_pty_aff  size
 #>   <fct>        <int>
@@ -76,11 +74,15 @@ exception of the `individuals` dataset contains a possible joining key:
 
 Here is an example of calculating how many candidates are in each of the
 two major parties: Democratic (DEM) and Republican (REP), based on their
-committee
-type:
+committee type:
 
 ``` r
-cand_cmte <- full_join(candidates, committees, by = "cand_id") %>% filter(cand_pty_aff == "REP"|cand_pty_aff =="DEM") %>% group_by(cand_pty_aff, committee_type) %>% summarise(n = n()) %>% drop_na(committee_type)
+cand_cmte <- candidates %>%
+  full_join(committees, by = "cand_id") %>%
+  filter(cand_pty_aff == "REP" | cand_pty_aff == "DEM") %>%
+  group_by(cand_pty_aff, committee_type) %>%
+  summarise(n = n()) %>%
+  drop_na(committee_type)
 head(cand_cmte)
 #> # A tibble: 6 x 3
 #> # Groups:   cand_pty_aff [109]
@@ -100,11 +102,13 @@ And extending that to create a visualization to see the results
 easily.
 
 ``` r
-ggplot(cand_cmte, aes(x = committee_type, y = n, fill = cand_pty_aff)) + geom_col(position = "dodge") +
-  labs(title = "Bar Chart of Total Committees by Type and Party", x = "Committee Type", y = "Count", fill = "Candidate Party Affiliation")
+ggplot(cand_cmte, aes(x = committee_type, y = n, fill = cand_pty_aff)) + 
+  geom_col(position = "dodge") +
+  labs(title = "Bar Chart of Total Committees by Type and Party", 
+       x = "Committee Type", y = "Count", fill = "Candidate Party Affiliation")
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
 
 ## Contributors
 
