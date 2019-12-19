@@ -12,8 +12,8 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.width=6, fig.height=4.5
-  ) 
+  fig.width = 6, fig.height = 4.5
+)
 library(fec16)
 library(scales)
 library(dplyr)
@@ -89,13 +89,16 @@ To answer our questions we can make use of some **data wrangling** and **data vi
 
 ### Example 1:
 
-**Which presidential candidate won majority in more states?**
+**Which presidential candidate won a majority in more states?**
 
 Using the `results` dataset, we can also see what actually happened in the 2016 elections.
 
 Here is how we can summarize the number of wins by candidate:
 ```{r}
-wins <- results %>% filter(winner_indicator == "W") %>% group_by(last_name) %>% summarise(num_wins = n())
+wins <- results %>%
+  filter(winner_indicator == "W") %>%
+  group_by(last_name) %>%
+  summarise(num_wins = n())
 wins
 ```
 
@@ -103,9 +106,13 @@ We can show the results using a simple bar chart:
 
 Each win is for a single state. There are 51 total wins for the 50 States and Washington, D.C.
 ```{r}
-ggplot(wins, aes(x = last_name, y = num_wins, fill = last_name)) + geom_col() +
-scale_fill_manual(values=c("blue", "red")) + labs(title = "Number of States Won: Clinton vs. Trump",
-x = "Candidate", y = "Count", fill = "Candidate")
+ggplot(wins, aes(x = last_name, y = num_wins, fill = last_name)) + 
+  geom_col() +
+  scale_fill_manual(values = c("blue", "red")) + 
+  labs(
+    title = "Number of States Won: Clinton vs. Trump",
+    x = "Candidate", y = "Count", fill = "Candidate"
+  )
 ```
 
 We can see that Trump had majority in more states than Clinton.
@@ -117,11 +124,11 @@ We can see that Trump had majority in more states than Clinton.
 Here we investigate what kind of relationship, if any, the candidates with over a 1000 votes got with the total contributions they made. We are interested in candidates with an ID number so we can join them with the contribution data set by using `inner_join`.
 
 ```{r, eval=TRUE}
-results_by_cand <- results %>% 
+results_by_cand <- results %>%
   drop_na(general_results, cand_id) %>%
   group_by(cand_id, last_name) %>%
-  summarise(sum_votes = sum(general_results)) %>% 
-  filter(sum_votes >1000) %>% 
+  summarise(sum_votes = sum(general_results)) %>%
+  filter(sum_votes > 1000) %>%
   inner_join(committee_contributions, by = "cand_id")
 results_by_cand
 ```
@@ -129,12 +136,14 @@ results_by_cand
 Next, we plot the contributions and votes on a scatter plot and plot a trend line that would make it easy for us to see the relationship. Since there are outliers in the data, it is best to not use a continuous axis scale in order to see all of the points. 
 
 ```{r eval=TRUE, message=FALSE}
-  ggplot(results_by_cand, mapping = aes(x = total_contributions , y = sum_votes)) +
+ggplot(results_by_cand, mapping = aes(x = total_contributions, y = sum_votes)) +
   geom_point() +
   scale_x_log10(labels = comma) +
   scale_y_sqrt(labels = comma) +
-  geom_smooth(method="auto") + 
-  labs(title = "Contributions vs. Votes in 2016", x = "Contributions in US Dollars", y = "Total Votes") + geom_text_repel(aes(label= last_name))
+  geom_smooth(method = "auto") +
+  labs(title = "Contributions vs. Votes in 2016", 
+       x = "Contributions in US Dollars", y = "Total Votes") + 
+  geom_text_repel(aes(label = last_name))
 ```
 
 As we can see, the highest contributors got the highest amount of votes so it has a positive correlation. 
@@ -146,16 +155,16 @@ As we can see, the highest contributors got the highest amount of votes so it ha
 
 Visualize the results of the popular vote in the elections and see how many people voted: 
 ```{r message=FALSE, warning=FALSE}
-results_by_cand <- results %>% 
+results_by_cand <- results %>%
   drop_na(general_results, cand_id) %>%
   group_by(cand_id, last_name) %>%
-  summarise(sum_votes = sum(general_results)) %>% 
-  filter(sum_votes >100000)
+  summarise(sum_votes = sum(general_results)) %>%
+  filter(sum_votes > 100000)
 
-ggplot(results_by_cand, mapping = aes(x = last_name, y = sum_votes, fill = last_name) ) + 
-  geom_col() + 
-  xlab("Candidates") + 
-  ylab("Number of Votes") + labs(title = "How Many People Voted?", fill = "Candidate") + 
+ggplot(results_by_cand, mapping = aes(x = last_name, y = sum_votes, fill = last_name)) +
+  geom_col() +
+  xlab("Candidates") +
+  ylab("Number of Votes") + labs(title = "How Many People Voted?", fill = "Candidate") +
   scale_y_continuous(labels = comma)
 ```
 
@@ -168,19 +177,21 @@ We can see that Clinton got more popular votes than Trump! It looks like Clinton
 
 We can create a scatter-plot of total contributions per candidate, colored by party (only including Democratic and Republican parties).
 ```{r message = FALSE}
-joined_data <- candidates%>%
+joined_data <- candidates %>%
   full_join(committee_contributions, by = "cand_id") %>%
   filter(!is.na(total_contributions)) %>%
-  filter(cand_pty_aff=="REP" | cand_pty_aff == "DEM") %>%
+  filter(cand_pty_aff == "REP" | cand_pty_aff == "DEM") %>%
   filter(total_contributions <= 1e+07)
 
-ggplot(joined_data, aes(x=cand_id, y=total_contributions, color = cand_pty_aff)) +
+ggplot(joined_data, aes(x = cand_id, y = total_contributions, color = cand_pty_aff)) +
   geom_point() +
-  geom_jitter() + 
-  theme(axis.text.x=element_blank()) + 
-  labs(title = "Contributions per Candidate by Party", 
-       x = "Candidates", y = "Total Contributions ($)",
-       color = "Candidate Party Affiliation") + 
+  geom_jitter() +
+  theme(axis.text.x = element_blank()) +
+  labs(
+    title = "Contributions per Candidate by Party",
+    x = "Candidates", y = "Total Contributions ($)",
+    color = "Candidate Party Affiliation"
+  ) +
   scale_y_continuous(labels = comma)
 ```
 
